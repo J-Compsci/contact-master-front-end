@@ -1,0 +1,390 @@
+body
+{
+    background: rgb(0,0,0);
+    background-image: url("../images/cool-background.png");
+    background-repeat: none;
+    overflow: hidden;
+    /*font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 0.65em;*/
+}
+
+h1, h2, h3, h4, h5, p, label, #userName{
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+p{
+  margin-top: 0px;
+  font-size: 25px;
+}
+
+#title{
+    font-size: 45px;
+    width: 96%;
+    margin: 1%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #ADADAD;
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+}
+
+#step{
+  font-style: italic;
+  color: #ebebeb;
+  font-size: 50px;
+}
+
+#loginDiv{
+    border-radius: 15px;
+    font-size: 30px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding: 15px;
+    background-color: rgba(28, 30, 42, 0.65);
+    box-shadow: 0px 2px 5px rgb(28, 30, 42);
+}
+
+#contentBlock{
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 30px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  background-color: rgba(28, 30, 42, 0.65);
+  box-shadow: 0px 2px 5px rgb(28, 30, 42);
+}
+
+/*#loggedInDiv
+{
+    justify-content: center;
+    font-size: 30px;
+    width: 70%;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #474747;
+}
+
+#accessUIDiv
+{
+    font-size: 30px;
+    width: 70%;
+    justify-content: center;
+    margin-left: 15%;
+    padding: 25px;
+    background-color: #474747;
+}*/
+
+button{
+    box-shadow: 0px 2px 5px 0px black;
+    border-color: transparent;
+    font-size: 20px;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button:hover{
+    box-shadow: 0px 0px 0px 0px black;
+    background-color: #399AC0/*#00d5124f*/;
+    color: #FFFFFF;
+    opacity: 1;
+}
+
+button:focus {
+  outline: none;
+}
+
+#loginName{
+  opacity: 1;
+	font-size: 25px;
+}
+
+#loginPassword{
+  opacity: 1;
+	font-size: 25px;
+}
+
+/*#searchText{
+	font-size: 30px;
+}
+
+#colorText{
+	font-size: 30px;
+}*/
+
+.RUDField{
+  font-size: 20px;
+}
+
+.queryBox{
+  border-top: 1px solid #303030;
+  padding-top: 20px;
+}
+
+#updateText{
+  margin-bottom: 1%;
+}
+
+input[type="text"],input[type="password"], input[type="email"]{
+    border-color: transparent;
+    border-radius: 17px;
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 3%;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+
+input[type="submit"]{
+  box-shadow: 0px 2px 5px 0px black;
+  border-color: transparent;
+  font-size: 20px;
+  border-radius: 25px;
+  width: 50%;
+  margin-left: 25%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover{
+  box-shadow: 0px 0px 0px 0px black;
+  background-color: #399AC0/*#00d5124f*/;
+  color: #FFFFFF;
+  opacity: 1;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus{
+  outline: none;
+  background-color: #ffffff;
+}
+
+/*-----------------------INNER TITLE----------------------------------*/
+#inner-title{
+    font-weight: bolder;
+    opacity: 1;
+    display: block;
+    font-size: 0.8em;
+    width: 235px;
+    margin: 0px auto 1% auto;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+/*Inner Title typing effect*/
+.typewriter #inner-title{
+  text-align: center;
+  justify-content: center;
+  overflow: hidden;
+  border-right: .12em solid white;
+  white-space: nowrap;
+  margin: 20 auto;
+  letter-spacing: .12em;
+  animation:
+    typing 1.5s steps(20, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing{
+  from { width: 0 }
+  to { width: 235px; }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret{
+  from, to { border-color: transparent }
+  50% { border-color: white; }
+}
+/*---------------------------------------------------------*/
+
+.loginResult{
+    opacity: 1;
+    display: inline-block;
+    font-size: 0.7em;
+    width: 90%;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Montserrat', sans-serif;
+    color: #DB3737;
+}
+
+#register{
+  opacity: 1;
+  display: inline-block;
+  font-size: 0.8em;
+  width: 90%;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+  font-family: 'Montserrat', sans-serif;
+  color: #DB3737;
+}
+
+#registerButton{
+  margin-bottom: 5%;
+}
+
+.wrap{
+  max-width: 60%;
+  margin: auto;
+  padding: 0.75em;
+  background: rgba(28, 30, 42, 0.9);
+  margin-top: 2em;
+  border-radius: 25px;
+  box-shadow: 0px 2px 5px rgb(28, 30, 42);
+}
+
+#regTitle{
+  margin-top: 0%;
+  margin-bottom: 0.5em;
+}
+
+form input[type="text"], form input[type="email"]{
+  width: 80%;
+  margin: 5px auto auto auto;
+  font-size: 20px;
+}
+
+form input[type="submit"]{
+  margin-top: 25px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5%;
+  margin-top: 1%;
+  margin-left: 0%;
+  margin-bottom: 1%;
+  color: #ADADAD;
+}
+
+.openBtn{
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.openBtn:hover{
+  box-shadow: 0px 0px 0px 0px black;
+  background-color: #399AC0;
+  color: #FFFFFF;
+}
+
+.overlay{
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background:rgba(0, 0, 0, 0.7);
+}
+
+.closeBtn{
+  position: fixed;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+.closeBtn:hover{
+  color: #ccc;
+}
+/*---------------------------------------------------*/
+
+/*--------------------------------------------------*/
+
+#userName{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+#logoutButton{
+    width: 30%;
+    font-size: 0.6em;
+    margin-left: 35%;
+}
+
+#logoutButton:hover{
+    background-color: #DB3737;
+}
+
+#deleteValueButton:hover{
+  background-color: #DB3737
+}
+
+#modButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modButtons{
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-size: 0.75em;
+    margin-bottom: 0px;
+}
+
+select{
+    width: 35%;
+    margin-left: 32%;
+    margin-top: 1px;
+    margin-bottom: 3%;
+    font-size: 0.65em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+option{
+    font-size: 0.75em;
+}
+
+#colorSearchResult{
+    display: none;
+}
+
+#colorAddResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    font-family: 'Montserrat', sans-serif;
+    color: #DB3737;
+}
