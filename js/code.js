@@ -147,6 +147,7 @@ function addColor()
 }
 
 //Search values -- update from Prof's Color options
+//Search for users, email, or phone number?
 function searchColor()
 {
 	var srch = document.getElementById("searchText").value;
@@ -191,12 +192,12 @@ function searchColor()
 	}
 }
 
-// Update values -- incomplete
-function updateValue(){
+// Update values -- incomplete may delete/ modify Add instead?
+/*function updateValue(){
 	var update = document.getElementById("updateText").value;
 	var cat = document.getElementById("valueCat").value;
 	//update with updateText values
-}
+}*/
 
 // Delete values -- incomplete
 function deleteValue(){
@@ -223,39 +224,38 @@ newForm = document.getElementById("regForm");
 
 //Validating Form entries
 function validate(event){
-
-  //Check all text inputs for data longer than one character (2 min)
-  if( newForm.firstN.value.length <= 1 ){
+	//Check all text inputs for data longer than one character (2 min)
+	if( newForm.firstN.value.length <= 1 ){
 		document.getElementById("firstResult").innerHTML = "Your first name must be at least 2 characters";
-    newForm.firstN.focus();
-    return false;
+    		newForm.firstN.focus();
+    		return false;
 
 	//Checking for valid entry on last name
-  } else if( newForm.lastN.value.length <= 1 ){
+	} else if( newForm.lastN.value.length <= 1 ){
 		document.getElementById("lastResult").innerHTML = "Your last name must be at least 2 characters";
-    newForm.lastN.focus();
-    return false;
+    		newForm.lastN.focus();
+    		return false;
 
 	//Backup check for input in the email input
 	} else if( newForm.email.value == "" ){
-			document.getElementById("emailResult").innerHTML = "Please provide your email";
-	    newForm.email.focus();
-	    return false;
+		document.getElementById("emailResult").innerHTML = "Please provide your email";
+	    	newForm.email.focus();
+	    	return false;
 
 	//Checking for exact length and a digit value
 	} else if( isNaN(newForm.phoneN.value) || newForm.phoneN.value.length != 10 ){
 		document.getElementById("phoneResult").innerHTML = "Phone number must be 10 digits";
-    newForm.phoneN.focus();
-    return false;
+    		newForm.phoneN.focus();
+    		return false;
 
 	//Checking for username minimum value
-} else if( newForm.userN.value.length <= 4 || newForm.userN.value.length > 50){
+	} else if( newForm.userN.value.length < 4 || newForm.userN.value.length > 50){
 		document.getElementById("usernameResult").innerHTML = "Your username must be at least 4 characters";
-    newForm.lastN.focus();
-    return false;
+    		newForm.lastN.focus();
+    		return false;
 
 	//Password Field minimum
-} else if(newForm.pass.value.length <= 4){
+	} else if(newForm.pass.value.length < 4){
 		document.getElementById("passResult").innerHTML = "Your Password must be at least 4 characters";
 		newForm.pass.focus();
 		return false;
@@ -266,29 +266,30 @@ function validate(event){
 		newForm.pass.focus();
 		return false;
 
-  }else{
-    return true;
-  }
+  	}else{
+    		return true;
+  	}
 }
 
 //Checking for a valid email input
 function validEmail(){
-  var email = newForm.email.value;
-  at = email.indexOf("@");
-  dot = email.lastIndexOf(".");
-
-  if( at < 1 || (dot - at < 2) || dot == email.length ){
-
-    document.getElementById("emailResult").innerHTML = "Provided email is incorrect";
-    newForm.email.focus();
-    return false;
-  }
-
-  return true;
+	var email = newForm.email.value;
+	at = email.indexOf("@");
+	dot = email.lastIndexOf(".");
+	if( at < 1 || (dot - at < 2) || dot == email.length ){
+		document.getElementById("emailResult").innerHTML = "Provided email is incorrect";
+		newForm.email.focus();
+		return false;
+	}
+	return true;
 }
 
-function handleForm(event){
+/*function handleForm(event){
 	event.preventDefault();
+}*/
+
+function userRegistration(){
+	
 }
 
 //Make sure this is only being called on valid pages i.e. index registration
@@ -301,15 +302,15 @@ if(newForm){
 			//iterate between each span and make innerHTML "" (blank) to avoid buildup
 			document.getElementsByClassName("loginResult")[i].innerHTML = "";
 		}
-	  if( validate(event) ){
-	    //if the forms all have the basic proper input call the email validation
-	    if( !validEmail(event) ){
-	      //returns false if the email is invalid
-				handleForm(event);
-	      return;
-
-	    }
-	  }
+		if( validate(event) ){
+	    	//if the forms all have the basic proper input call the email validation
+	    		if( !validEmail(event) ){
+		    	//returns false if the email is invalid
+		    	//handleForm(event);
+		    		return;
+			}
+			userRegistration();
+		}
 	});
 }
 
