@@ -30,7 +30,7 @@
 			<span id="register">Don't have an account?</span>
 			<!--Registration Overlay-->
 			<div id="regOverlay" class="overlay">
-				<span class="closeBtn" onclick="closeForm()" title="Close Overlay">  &#215 </span>
+				<span class="closeBtn" onclick="closeForm();" title="Close Overlay">  &#215 </span>
 				<div class="wrap">
 					<h2 id="regTitle"> Sign up </h2>
 						<p>Fill in the fields below</p>
@@ -49,7 +49,7 @@
 								<span id="emailResult" class="loginResult"></span>
 
 							<!--Phone Number-->
-							<input type="text" placeholder="Phone Number(optional)" name="phoneN">
+							<input type="text" placeholder="Phone Number (optional)" name="phoneN">
 								<span id="phoneResult" class="loginResult"></span>
 
 							<!--Username-->
@@ -65,11 +65,12 @@
 								<span id="passConResult" class="loginResult"></span>
 							<input type="submit" value="Register">
 						</form>
+						<span id="regResult" class="loginResult"></span>
 				</div>
 			</div>
 
 			<!--Registration Button, to open overlay-->
-			<button class="openBtn" onclick="openForm()">Register</button>
+			<button class="openBtn" onclick="openForm();">Register</button>
 		</div>
 	</body>
 </html>

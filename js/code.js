@@ -192,7 +192,7 @@ function searchColor()
 	}
 }
 
-// Update values -- incomplete may delete/ modify Add instead?
+// Update values -- change existing values
 /*function updateValue(){
 	var update = document.getElementById("updateText").value;
 	var cat = document.getElementById("valueCat").value;
@@ -210,11 +210,28 @@ function deleteValue(){
 function openForm(){
 	document.getElementById("regOverlay").style.display = "block";
 }
+
 function closeForm(){
 	document.getElementById("regOverlay").style.display = "none";
+
+	//makes the form reappear if opened again
+	if(newForm.style.display == "none"){
+		newForm.style.display = "inline";
+	}
+
 	var num = document.getElementsByClassName("loginResult");
+	var inputs = newForm.elements;
+
+	//clears all input fields, except for the button
+	for (i = 0; i < inputs.length; i++) {
+	  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "password" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
+	    // Update text input
+	    inputs[i].value = "";
+	  }
+	}
+
+	//iterate between each span and make innerHTML "" (blank) to avoid buildup
 	for(var i = 0; i < num.length; i++){
-		//iterate between each span and make innerHTML "" (blank) to avoid buildup
 		document.getElementsByClassName("loginResult")[i].innerHTML = "";
 	}
 }
@@ -242,11 +259,14 @@ function validate(event){
 	    	newForm.email.focus();
 	    	return false;
 
-	//Checking for exact length and a digit value
-	} else if( isNaN(newForm.phoneN.value) || newForm.phoneN.value.length != 10 ){
-		document.getElementById("phoneResult").innerHTML = "Phone number must be 10 digits";
-    		newForm.phoneN.focus();
-    		return false;
+	//Checking if there is any input and if there is require it to be a number and 10 digits
+	//If there is no input it skips requirements (because its optional)
+	} else if(newForm.phoneN.value.length >= 1){
+		if(isNaN(newForm.phoneN.value) || newForm.phoneN.value.length != 10 ){
+			document.getElementById("phoneResult").innerHTML = "Phone number must be 10 digits";
+	    		newForm.phoneN.focus();
+	    		return false;
+		}
 
 	//Checking for username minimum value
 	} else if( newForm.userN.value.length < 4 || newForm.userN.value.length > 50){
@@ -289,8 +309,11 @@ function validEmail(){
 	event.preventDefault();
 }*/
 
-function userRegistration(){
-	
+function userRegistration()
+{
+	//Makes the form go away and let's the user know they've been registered
+	newForm.style.display = "none";
+	document.getElementById("regResult").innerHTML = "You've been registered! You can close the form and login.";
 }
 
 //Make sure this is only being called on valid pages i.e. index registration
@@ -309,7 +332,7 @@ if(newForm){
 		    	//returns false if the email is invalid
 		    	//handleForm(event);
 		    		return;
-			}
+					}
 			userRegistration();
 		}
 	});
@@ -351,48 +374,48 @@ for (var i = 0; i < x; i++) {
 
 function draw() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  
+
   ctx.globalCompositeOperation = "lighter";
-  
+
   for (var i = 0, x = stars.length; i < x; i++) {
     var s = stars[i];
-  
-    ctx.fillStyle = "#fff";
+
+    ctx.fillStyle = "#399AC0";
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.radius, 0, 2 * Math.PI);
     ctx.fill();
     ctx.fillStyle = 'black';
     ctx.stroke();
   }
-  
+
   ctx.beginPath();
   for (var i = 0, x = stars.length; i < x; i++) {
     var starI = stars[i];
-    ctx.moveTo(starI.x,starI.y); 
+    ctx.moveTo(starI.x,starI.y);
     if(distance(mouse, starI) < 150) ctx.lineTo(mouse.x, mouse.y);
     for (var j = 0, x = stars.length; j < x; j++) {
       var starII = stars[j];
       if(distance(starI, starII) < 150) {
         //ctx.globalAlpha = (1 / 150 * distance(starI, starII).toFixed(1));
-        ctx.lineTo(starII.x,starII.y); 
+        ctx.lineTo(starII.x,starII.y);
       }
     }
   }
   ctx.lineWidth = 0.05;
-  ctx.strokeStyle = 'white';
+  ctx.strokeStyle = '#399AC0';
   ctx.stroke();
 }
 
 function distance( point1, point2 ){
   var xs = 0;
   var ys = 0;
- 
+
   xs = point2.x - point1.x;
   xs = xs * xs;
- 
+
   ys = point2.y - point1.y;
   ys = ys * ys;
- 
+
   return Math.sqrt( xs + ys );
 }
 
@@ -401,10 +424,10 @@ function distance( point1, point2 ){
 function update() {
   for (var i = 0, x = stars.length; i < x; i++) {
     var s = stars[i];
-  
+
     s.x += s.vx / FPS;
     s.y += s.vy / FPS;
-    
+
     if (s.x < 0 || s.x > canvas.width) s.vx = -s.vx;
     if (s.y < 0 || s.y > canvas.height) s.vy = -s.vy;
   }
