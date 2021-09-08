@@ -1,13 +1,13 @@
 
 body{
-    background: #232323;
+    background: #1d1d24;
     background-repeat: none;
     overflow: hidden;
     /*font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 0.65em;*/
 }
 canvas {
-  background: #232323;
+  background: #1d1d24;
   width: 100%;
   height: 100%;
   display: block;
@@ -270,8 +270,10 @@ form input[type="text"], form input[type="email"], input[type="password"]{
 }
 
 form input[type="submit"]{
+  text-align: center;
   margin-top: 25px;
-  margin: auto;
+  margin-left: 25%;
+  margin-right: auto;
 }
 
 form {
@@ -283,6 +285,11 @@ form {
   margin-left: 0%;
   margin-bottom: 1%;
   color: #ADADAD;
+}
+
+/*successful registration text*/
+#regResult {
+  color: #399AC0;
 }
 
 .openBtn{
