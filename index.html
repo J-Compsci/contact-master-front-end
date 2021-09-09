@@ -7,8 +7,6 @@
 
 		<title>COP 4331 LAMP Stack Contact Manager</title>
 		<!-- Javascript and CSS files -->
-		
-		<canvas id="canvas"></canvas>
 		<script type="text/javascript" src="js/md5.js"></script>
 		<script type="text/javascript" src="js/code.js" defer></script>
 	  <link href="css/styles.css" rel="stylesheet">
@@ -17,8 +15,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap" rel="stylesheet">
 	</head>
 	<body>
-	<h1 id="title">Contact <span id="step">Manager</span></h1>
-	<!--Login interface//typewriter effect on inner-title-->
+		<canvas id="canvas"></canvas>
+		<h1 id="title">Contact <span id="step">Manager</span></h1>
+		<!--Login interface//typewriter effect on inner-title-->
 		<div class="typewriter" id="loginDiv">
 			<span id="inner-title">PLEASE LOG IN.</span>
 
@@ -38,11 +37,11 @@
 						<form id="regForm" onsubmit="return false" >
 
 							<!--First Name-->
-							<input type="text" placeholder="First Name" name="firstN">
+							<input type="text" placeholder="First Name" name="firstN" required>
 								<span id="firstResult" class="loginResult"></span>
 
 							<!--Last Name-->
-							<input type="text" placeholder="Last Name" name="lastN">
+							<input type="text" placeholder="Last Name" name="lastN" required>
 								<span id="lastResult" class="loginResult"></span>
 
 							<!--Email-->
@@ -54,15 +53,15 @@
 								<span id="phoneResult" class="loginResult"></span>
 
 							<!--Username-->
-							<input type="text" placeholder="Username" name="userN">
+							<input type="text" placeholder="Username" name="userN" required>
 								<span id="usernameResult" class="loginResult"></span>
 
 							<!--Password-->
-							<input type="password" placeholder="Password" name="pass">
+							<input type="password" placeholder="Password" name="pass" required>
 								<span id="passResult" class="loginResult"></span>
 
 							<!--Password Confirmation-->
-							<input type="password" placeholder="Re-enter Password" name="passCon">
+							<input type="password" placeholder="Re-enter Password" name="passCon" required>
 								<span id="passConResult" class="loginResult"></span>
 							<input type="submit" value="Register">
 						</form>

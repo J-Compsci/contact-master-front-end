@@ -7,9 +7,7 @@
 
 	<title>COP 4331 LAMP Stack Demo Contact Manager</title>
 	<!-- Javascript and CSS files -->
-	
-	<canvas id="canvas"></canvas>
-	<script type="text/javascript" src="js/code.js"></script>
+	<script type="text/javascript" src="js/code.js" defer></script>
   <link href="css/styles.css" rel="stylesheet">
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
@@ -26,36 +24,36 @@
 
 </head>
 <body>
+	<canvas id="canvas"></canvas>
 	<h1 id="title">Contact <span id="step">Manager</span></h1>
 	<div id="contentBlock"> <!--Everything under title-->
 
 		<div id="loggedInDiv">
 			<span id="userName"></span><br />
 			<button type="button" id="logoutButton" onclick="doLogout();">Log Out</button>
-		</div><br>
+		</div>
 
 		<div id="accessUIDiv">
 
-			<!-- Search - For anything in data base, for user specific info, or only a particular category (i.e. usernames)?  -->
+			<!-- Search - Search Contacts; search for names and emails? -->
 			<div class="queryBox">
-				<input type="text" class="RUDField" id="searchText" placeholder="Search Color"/>
-				<button type="button" id="searchColorButton" onclick="searchColor();"> Search </button><br />
+				<input type="text" class="RUDField" id="searchText" placeholder="Search Contact"/>
+				<button type="button" class="queryBtn" id="searchColorButton" onclick="searchColor();"> Search </button><br />
 				<span id="colorSearchResult"></span>
 				<p id="colorList">
 				</p>
 			</div><br />
 
-			<!-- Add Field - Is this replaced by registration or will this be for additional phone numbers etc.?-->
-			<!--Maybe delete-->
+			<!-- Add Field - Add Contact; Format for adding, add names, and emails ?-->
 			<div class="queryBox">
-				<input type="text" class="RUDField" id="colorText" placeholder="Add Color">
-				<button type="button" id="addColorButton" onclick="addColor();"> Add </button><br />
+				<input type="text" class="RUDField" id="colorText" placeholder="Add Contact">
+				<button type="button" class="queryBtn" id="addColorButton" onclick="addColor();"> Add </button><br />
 				<span id="colorAddResult"></span><br/>
 			</div>
 
-			<!--Update/Delete-->
+			<!--Update Contact/Delete Contact-->
 			<div class="queryBox" id="UDQuery">
-				<input type="text" class="RUDField" id="updateText" placeholder="Update Value">
+				<input type="text" class="RUDField" id="updateText" placeholder="Update Contact">
 				<label for="Category"> Category: </label>
 				<select class="form-control" id="valueCat" name="Category" required>
 					<option value="NA" selected> Select one</option>

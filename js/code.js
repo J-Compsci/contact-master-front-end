@@ -216,23 +216,27 @@ function closeForm(){
 
 	//makes the form reappear if opened again
 	if(newForm.style.display == "none"){
-		newForm.style.display = "inline";
-	}
+		//newForm.style.display = "inline";
+		location.reload();
+		return false;
+		
+	} else {
 
-	var num = document.getElementsByClassName("loginResult");
-	var inputs = newForm.elements;
+		var num = document.getElementsByClassName("loginResult");
+		var inputs = newForm.elements;
 
-	//clears all input fields, except for the button
-	for (i = 0; i < inputs.length; i++) {
-	  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "password" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
-	    // Update text input
-	    inputs[i].value = "";
-	  }
-	}
+		//clears all input fields, except for the button
+		for (i = 0; i < inputs.length; i++) {
+		  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "password" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
+		    // Update text input
+		    inputs[i].value = "";
+		  }
+		}
 
-	//iterate between each span and make innerHTML "" (blank) to avoid buildup
-	for(var i = 0; i < num.length; i++){
-		document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		//iterate between each span and make innerHTML "" (blank) to avoid buildup
+		for(var i = 0; i < num.length; i++){
+			document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		}
 	}
 }
 
