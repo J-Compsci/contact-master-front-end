@@ -3,6 +3,9 @@ body{
     background: #1d1d24;
     background-repeat: none;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /*font-family: 'IBM Plex Sans KR', sans-serif;
     font-size: 0.65em;*/
 }
@@ -25,13 +28,13 @@ h1, h2, h3, h4, h5, p, label, #userName{
 
 p{
   margin-top: 0px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #title{
     font-size: 45px;
-    width: 96%;
-    margin: 1%;
+    width: 60%;
+    margin-left: 20%;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -49,7 +52,7 @@ p{
 #loginDiv{
     border-radius: 15px;
     font-size: 30px;
-    width: 70%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 30%;
@@ -65,7 +68,7 @@ p{
   flex-direction: column;
   justify-content: center;
   font-size: 30px;
-  width: 70%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
   padding: 25px;
@@ -96,7 +99,7 @@ p{
 button{
     box-shadow: 0px 2px 5px 0px black;
     border-color: transparent;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 25px;
     width: 50%;
     margin-left: 25%;
@@ -104,6 +107,7 @@ button{
 }
 
 button:hover{
+    cursor: pointer;
     box-shadow: 0px 0px 0px 0px black;
     background-color: #399AC0/*#00d5124f*/;
     color: #FFFFFF;
@@ -124,35 +128,31 @@ button:focus {
 	font-size: 25px;
 }
 
-/*#searchText{
-	font-size: 30px;
-}
-
-#colorText{
-	font-size: 30px;
-}*/
-
-.RUDField{
-  font-size: 20px;
-}
-
 .queryBox{
   border-top: 1px solid #303030;
   padding-top: 20px;
+}
+
+.queryBtn{
+  font-size: 25px;
 }
 
 #updateText{
   margin-bottom: 1%;
 }
 
-input[type="text"],input[type="password"], input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"]{
     border-color: transparent;
-    border-radius: 17px;
+    border-radius: 20px;
     text-align: center;
-    width: 80%;
-    margin-left: 10%;
+    width: 50%;
+    margin-left: 25%;
     margin-bottom: 3%;
     font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+input[type="text"].RUDField{
+  font-size: 25px;
 }
 
 
@@ -177,8 +177,9 @@ input[type="submit"]:hover{
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus{
   outline: none;
-  background-color: #ffffff;
 }
+
+
 
 /*-----------------------INNER TITLE----------------------------------*/
 #inner-title{
@@ -223,9 +224,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     opacity: 1;
     display: inline-block;
     font-size: 0.7em;
+    font-weight: bold;
     width: 90%;
     text-align: center;
-    margin-top: 2%;
+    margin-top: 1%;
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Montserrat', sans-serif;
@@ -264,14 +266,18 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
   margin-bottom: 0.5em;
 }
 
-form input[type="text"], form input[type="email"], input[type="password"]{
+form input[type="text"], form input[type="email"], form input[type="password"]{
   width: 80%;
-  font-size: 20px;
+  margin-left: 10%;
+  margin-right: auto;
+  margin-bottom: 1%;
+  font-size: 25px;
 }
 
 form input[type="submit"]{
+  font-size: 25px;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-left: 25%;
   margin-right: auto;
 }
@@ -293,7 +299,6 @@ form {
 }
 
 .openBtn{
-  padding: 10px 15px;
   cursor: pointer;
 }
 
@@ -341,6 +346,7 @@ form {
     width: 30%;
     font-size: 0.6em;
     margin-left: 35%;
+    margin-bottom: 10px;
 }
 
 #logoutButton:hover{
@@ -354,13 +360,15 @@ form {
 #modButtons{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: space-around;
+  width: 50%;
+  margin: auto;
 }
 
 .modButtons{
-  width: 40%;
+  font-size: 25px;
+  width: 45%;
+
   margin-left: auto;
   margin-right: auto;
 }
