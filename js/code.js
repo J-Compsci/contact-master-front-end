@@ -1,7 +1,6 @@
 //TODO:
 //Registration information fields submission
-//Finish Update/Delete (Category must be selected and perform the correct action depending on button)
-//Update Search and Add to proper attribute changes
+//Finish Update/Delete (Determine if update is needed, complete delete function)
 //Connect to API
 
 var urlBase = 'http://contactmaster.xyz/LAMPAPI';
@@ -116,15 +115,15 @@ function doLogout()
 }
 
 // Add - Not registration? additional numbers
-function addColor()
+function addContact()
 {
-	var newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	var newContact = document.getElementById("contactText").value;
+	document.getElementById("contactAddResult").innerHTML = "";
 
-	var tmp = {color:newColor,userId,userId};
+	var tmp = {contact:newContact,userId,userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/AddColor.' + extension;
+	var url = urlBase + '/AddContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -135,30 +134,29 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 }
 
-//Search values -- update from Prof's Color options
-//Search for users, email, or phone number?
-function searchColor()
+//Search values
+function searchContact()
 {
 	var srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	document.getElementById("contactSearchResult").innerHTML = "";
 
-	var colorList = "";
+	var contactList = "";
 
 	var tmp = {search:srch,userId:userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/SearchColors.' + extension;
+	var url = urlBase + '/SearchContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -169,30 +167,30 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
 
-				for( var i=0; i<jsonObject.results.length; i++ )
+				for( var i = 0; i < jsonObject.results.length; i++ )
 				{
-					colorList += jsonObject.results[i];
+					contactList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						contactList += "<br />\r\n";
 					}
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 }
 
-// Update values -- change existing values
+// Update values... is update needed or does add color work for updating DB data
 /*function updateValue(){
 	var update = document.getElementById("updateText").value;
 	var cat = document.getElementById("valueCat").value;
@@ -219,7 +217,7 @@ function closeForm(){
 		//newForm.style.display = "inline";
 		location.reload();
 		return false;
-		
+
 	} else {
 
 		var num = document.getElementsByClassName("loginResult");
