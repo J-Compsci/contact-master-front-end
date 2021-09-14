@@ -105,6 +105,7 @@ function readCookie()
 	}
 }
 
+
 function doLogout()
 {
 	userId = 0;
@@ -114,14 +115,22 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-// Add - Not registration? additional numbers
+
+// Add - new Contacts
 function addContact()
 {
-	var newContact = document.getElementById("contactText").value;
+	//var newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
-	var tmp = {contact:newContact,userId,userId};
-	var jsonPayload = JSON.stringify( tmp );
+	var data = {};
+	for (var i = 0, ii = addForm.length; i < ii; ++i) {
+		var input = addForm[i];
+		if (input.name){
+			data[input.name] = input.value;
+		}
+	}
+
+	var jsonPayload = JSON.stringify( data );
 
 	var url = urlBase + '/AddContact.' + extension;
 
@@ -135,6 +144,7 @@ function addContact()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				newForm.style.display = "none";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -144,6 +154,7 @@ function addContact()
 		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 }
+
 
 //Search values
 function searchContact()
@@ -204,12 +215,14 @@ function deleteValue(){
 	//delete the value from data
 }
 
-//----------Registration Form Overlay & Validation----------
-function openForm(){
+//----------Registration and Add Contact Form Overlay & Validation----------
+function openFormReg(){
 	document.getElementById("regOverlay").style.display = "block";
 }
-
-function closeForm(){
+function openFormAdd(){
+	document.getElementById("addOverlay").style.display = "block";
+}
+function closeFormReg(){
 	document.getElementById("regOverlay").style.display = "none";
 
 	//makes the form reappear if opened again
@@ -238,8 +251,55 @@ function closeForm(){
 	}
 }
 
+//Closes Add Contact Form
+function closeFormAdd(){
+	document.getElementById("addOverlay").style.display = "none";
+
+	//makes the form reappear if opened again
+	if(addForm.style.display == "none"){
+		//newForm.style.display = "inline";
+		location.reload();
+		return false;
+
+	} else {
+
+		var num = document.getElementsByClassName("loginResult");
+		var inputs = addForm.elements;
+
+		//clears all input fields, except for the button
+		for (i = 0; i < inputs.length; i++) {
+		  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
+		    // Update text input
+		    inputs[i].value = "";
+		  }
+		}
+
+		//iterate between each span and make innerHTML "" (blank) to avoid buildup
+		for(var i = 0; i < num.length; i++){
+			document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		}
+	}
+}
+
+
 //Registration Form
 newForm = document.getElementById("regForm");
+addForm = document.getElementById("addForm");
+
+if(addForm){
+	//Event listener for the submit button
+	addForm.addEventListener("submit", function(event){
+		//If form has been "submitted" without correct info before, returns html result spans to blank
+		var num = document.getElementsByClassName("loginResult");
+
+		for(var i = 0; i < num.length; i++){
+			//iterate between each span and make innerHTML "" (blank) to avoid buildup
+			document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		}
+		addContact();
+
+	});
+}
 
 //Validating Form entries
 function validate(event){
@@ -307,17 +367,6 @@ function validEmail(){
 	return true;
 }
 
-/*function handleForm(event){
-	event.preventDefault();
-}*/
-
-function userRegistration()
-{
-	//Makes the form go away and let's the user know they've been registered
-	newForm.style.display = "none";
-	document.getElementById("regResult").innerHTML = "You've been registered! You can close the form and login.";
-}
-
 //Make sure this is only being called on valid pages i.e. index registration
 if(newForm){
 	//Event listener for the submit button
@@ -340,7 +389,47 @@ if(newForm){
 	});
 }
 
+function userRegistration()
+{
+	sendData();
+	newForm.style.display = "none";  //Makes the form go away and let's the user know they've been registered
+	document.getElementById("regResult").innerHTML = "You've been registered! You can close the form and login.";
+}
 
+function sendData(){  //Sends Registration Data
+  //console.log( 'Sending data' );
+	var data = {};
+  for (var i = 0, ii = newForm.length; i < ii; ++i) {
+    var input = newForm[i];
+    if (input.name){
+      data[input.name] = input.value;
+    }
+  }
+
+  var xhr = new XMLHttpRequest();
+	var url = urlBase + '/Registration.' + extension; //NEED proper .php filename
+	var jsonPayload = JSON.stringify( data );
+  // Set up our request
+  xhr.open(newForm.method, newForm.action, true);
+	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				//document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				//newForm.style.display = "none";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactAddResult").innerHTML = err.message;
+	}
+}
 
 
 // Dynamic Background---------------------------------------------

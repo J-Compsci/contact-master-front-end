@@ -37,7 +37,7 @@
 
 			<!-- Search - Search Contacts;-->
 			<div class="queryBox">
-				<input type="text" class="RUDField" id="searchText" placeholder="Search Contact"/>
+				<input type="text" class="RUDField" id="searchText" placeholder="Search Contacts"/>
 				<button type="button" class="queryBtn" id="searchContactButton" onclick="searchContact();"> Search </button><br />
 				<span id="contactSearchResult"></span>
 				<p id="contactList">
@@ -46,9 +46,37 @@
 
 			<!-- Add Field - Add Contact; -->
 			<div class="queryBox">
-				<input type="text" class="RUDField" id="contactText" placeholder="Add Contact">
-				<button type="button" class="queryBtn" id="addContactButton" onclick="addContact();"> Add </button><br />
-				<span id="contactAddResult"></span><br/>
+
+				<div id="addOverlay" class="overlay">
+					<span class="closeBtn" onclick="closeFormAdd();" title="Close Overlay">  &#215 </span>
+					<div class="wrap">
+						<h2 id="addTitle"> Add a contact </h2>
+							<p>Fill in the fields below</p>
+							<form id="addForm" onsubmit="return false" >
+
+								<!--First Name-->
+								<input type="text" placeholder="First Name" name="firstN" required>
+
+								<!--Last Name-->
+								<input type="text" placeholder="Last Name" name="lastN">
+
+								<!--Email-->
+								<input type="email" placeholder="Email" name="email">
+
+								<!--Phone Number-->
+								<input type="text" placeholder="Phone Number" name="phoneN">
+
+								<input type="submit" value="Add Contact">
+							</form>
+							<span id="contactAddResult" class="loginResult"></span>
+					</div>
+				</div>
+
+				<!--Add Button, to open overlay-->
+				<button class="openBtn" onclick="openFormAdd();">New Contact</button><br/>
+
+				<!--<button type="button" class="queryBtn" id="addContactButton" onclick="addContact();"> Add </button>-->
+				<br>
 			</div>
 
 			<!--Update Contact/Delete Contact-->
