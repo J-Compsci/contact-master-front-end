@@ -1,7 +1,6 @@
 //TODO:
 //Registration information fields submission
-//Finish Update/Delete (Category must be selected and perform the correct action depending on button)
-//Update Search and Add to proper attribute changes
+//Finish Update/Delete (Determine if update is needed, complete delete function)
 //Connect to API
 
 var urlBase = 'http://contactmaster.xyz/LAMPAPI';
@@ -106,6 +105,7 @@ function readCookie()
 	}
 }
 
+
 function doLogout()
 {
 	userId = 0;
@@ -115,16 +115,24 @@ function doLogout()
 	window.location.href = "index.html";
 }
 
-// Add - Not registration? additional numbers
-function addColor()
+
+// Add - new Contacts
+function addContact()
 {
-	var newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	//var newContact = document.getElementById("contactText").value;
+	document.getElementById("contactAddResult").innerHTML = "";
 
-	var tmp = {color:newColor,userId,userId};
-	var jsonPayload = JSON.stringify( tmp );
+	var data = {};
+	for (var i = 0, ii = addForm.length; i < ii; ++i) {
+		var input = addForm[i];
+		if (input.name){
+			data[input.name] = input.value;
+		}
+	}
 
-	var url = urlBase + '/AddColor.' + extension;
+	var jsonPayload = JSON.stringify( data );
+
+	var url = urlBase + '/AddContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -135,30 +143,31 @@ function addColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				newForm.style.display = "none";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 }
 
-//Search values -- update from Prof's Color options
-//Search for users, email, or phone number?
-function searchColor()
+
+//Search values
+function searchContact()
 {
 	var srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	document.getElementById("contactSearchResult").innerHTML = "";
 
-	var colorList = "";
+	var contactList = "";
 
 	var tmp = {search:srch,userId:userId};
 	var jsonPayload = JSON.stringify( tmp );
 
-	var url = urlBase + '/SearchColors.' + extension;
+	var url = urlBase + '/SearchContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -169,30 +178,30 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
 
-				for( var i=0; i<jsonObject.results.length; i++ )
+				for( var i = 0; i < jsonObject.results.length; i++ )
 				{
-					colorList += jsonObject.results[i];
+					contactList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						contactList += "<br />\r\n";
 					}
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 }
 
-// Update values -- change existing values
+// Update values... is update needed or does add color work for updating DB data
 /*function updateValue(){
 	var update = document.getElementById("updateText").value;
 	var cat = document.getElementById("valueCat").value;
@@ -206,12 +215,14 @@ function deleteValue(){
 	//delete the value from data
 }
 
-//----------Registration Form Overlay & Validation----------
-function openForm(){
+//----------Registration and Add Contact Form Overlay & Validation----------
+function openFormReg(){
 	document.getElementById("regOverlay").style.display = "block";
 }
-
-function closeForm(){
+function openFormAdd(){
+	document.getElementById("addOverlay").style.display = "block";
+}
+function closeFormReg(){
 	document.getElementById("regOverlay").style.display = "none";
 
 	//makes the form reappear if opened again
@@ -219,7 +230,7 @@ function closeForm(){
 		//newForm.style.display = "inline";
 		location.reload();
 		return false;
-		
+
 	} else {
 
 		var num = document.getElementsByClassName("loginResult");
@@ -240,8 +251,55 @@ function closeForm(){
 	}
 }
 
+//Closes Add Contact Form
+function closeFormAdd(){
+	document.getElementById("addOverlay").style.display = "none";
+
+	//makes the form reappear if opened again
+	if(addForm.style.display == "none"){
+		//newForm.style.display = "inline";
+		location.reload();
+		return false;
+
+	} else {
+
+		var num = document.getElementsByClassName("loginResult");
+		var inputs = addForm.elements;
+
+		//clears all input fields, except for the button
+		for (i = 0; i < inputs.length; i++) {
+		  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
+		    // Update text input
+		    inputs[i].value = "";
+		  }
+		}
+
+		//iterate between each span and make innerHTML "" (blank) to avoid buildup
+		for(var i = 0; i < num.length; i++){
+			document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		}
+	}
+}
+
+
 //Registration Form
 newForm = document.getElementById("regForm");
+addForm = document.getElementById("addForm");
+
+if(addForm){
+	//Event listener for the submit button
+	addForm.addEventListener("submit", function(event){
+		//If form has been "submitted" without correct info before, returns html result spans to blank
+		var num = document.getElementsByClassName("loginResult");
+
+		for(var i = 0; i < num.length; i++){
+			//iterate between each span and make innerHTML "" (blank) to avoid buildup
+			document.getElementsByClassName("loginResult")[i].innerHTML = "";
+		}
+		addContact();
+
+	});
+}
 
 //Validating Form entries
 function validate(event){
@@ -309,17 +367,6 @@ function validEmail(){
 	return true;
 }
 
-/*function handleForm(event){
-	event.preventDefault();
-}*/
-
-function userRegistration()
-{
-	//Makes the form go away and let's the user know they've been registered
-	newForm.style.display = "none";
-	document.getElementById("regResult").innerHTML = "You've been registered! You can close the form and login.";
-}
-
 //Make sure this is only being called on valid pages i.e. index registration
 if(newForm){
 	//Event listener for the submit button
@@ -342,7 +389,47 @@ if(newForm){
 	});
 }
 
+function userRegistration()
+{
+	sendData();
+	newForm.style.display = "none";  //Makes the form go away and let's the user know they've been registered
+	document.getElementById("regResult").innerHTML = "You've been registered! You can close the form and login.";
+}
 
+function sendData(){  //Sends Registration Data
+  //console.log( 'Sending data' );
+	var data = {};
+  for (var i = 0, ii = newForm.length; i < ii; ++i) {
+    var input = newForm[i];
+    if (input.name){
+      data[input.name] = input.value;
+    }
+  }
+
+  var xhr = new XMLHttpRequest();
+	var url = urlBase + '/Registration.' + extension; //NEED proper .php filename
+	var jsonPayload = JSON.stringify( data );
+  // Set up our request
+  xhr.open(newForm.method, newForm.action, true);
+	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				//document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				//newForm.style.display = "none";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("contactAddResult").innerHTML = err.message;
+	}
+}
 
 
 // Dynamic Background---------------------------------------------
