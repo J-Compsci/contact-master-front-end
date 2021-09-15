@@ -19,13 +19,13 @@ function doLogin()
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
 // Need for actual login event-disabled while updating:
-//   var hash = md5( password );
+   var hash = md5( password );
 
 	document.getElementById("loginResult").innerHTML = "";
 
 	var tmp = {login:login,password:password};
 // Need for actual login event-disabled while updating:
-//	var tmp = {login:login,password:hash};
+	var tmp = {login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
 
 	var url = urlBase + '/Login.' + extension;
