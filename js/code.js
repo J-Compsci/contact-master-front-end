@@ -123,10 +123,12 @@ function addContact()
 	document.getElementById("contactAddResult").innerHTML = "";
 
 	var data = {};
-	for (var i = 0, ii = addForm.length; i < ii; ++i) {
+	for (var i = 0, ii = addForm.length+1; i < ii; ++i) {
 		var input = addForm[i];
 		if (input.name){
 			data[input.name] = input.value;
+		} else if(i == addForm.length) {
+			data[date] = new Date();
 		}
 	}
 
@@ -143,7 +145,7 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added, you may close the form.";
 				newForm.style.display = "none";
 			}
 		};
@@ -189,7 +191,7 @@ function searchContact()
 						contactList += "<br />\r\n";
 					}
 				}
-
+				document.getElementsByTagName("p").style.display = "inline-block"
 				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
@@ -290,13 +292,7 @@ if(addForm){
 	//Event listener for the submit button
 	addForm.addEventListener("submit", function(event){
 		//If form has been "submitted" without correct info before, returns html result spans to blank
-		var num = document.getElementsByClassName("loginResult");
-
-		for(var i = 0; i < num.length; i++){
-			//iterate between each span and make innerHTML "" (blank) to avoid buildup
-			document.getElementsByClassName("loginResult")[i].innerHTML = "";
-		}
-		addContact();
+	addContact();
 
 	});
 }
