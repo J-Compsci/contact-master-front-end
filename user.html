@@ -8,7 +8,8 @@
 	<title>Contact Master</title>
 	<!-- Javascript and CSS files -->
 	<script type="text/javascript" src="js/code.js?version=1" defer></script>
-       <link href="css/styles.css?version=1" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="css/styles.css?version=1" rel="stylesheet">
 	<!--Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200&display=swap" rel="stylesheet">
@@ -29,7 +30,7 @@
 	<div id="contentBlock"> <!--Everything under title-->
 
 		<div id="loggedInDiv">
-			<span id="userName"></span><br />
+			<span id="userName"></span>
 			<button type="button" id="logoutButton" onclick="doLogout();">Log Out</button>
 		</div>
 
@@ -38,11 +39,10 @@
 			<!-- Search - Search Contacts;-->
 			<div class="queryBox">
 				<input type="text" class="RUDField" id="searchText" placeholder="Search Contacts"/>
-				<button type="button" class="queryBtn" id="searchContactButton" onclick="searchContact();"> Search </button><br />
+				<button type="button" class="queryBtn" id="searchContactButton" onclick="searchContact();"> Search </button>
 				<span id="contactSearchResult"></span>
-				<p id="contactList">
-				</p>
-			</div><br />
+				<p id="contactList"></p>
+			</div>
 
 			<!-- Add Field - Add Contact; -->
 			<div class="queryBox">
@@ -73,15 +73,13 @@
 				</div>
 
 				<!--Add Button, to open overlay-->
-				<button class="openBtn" onclick="openFormAdd();">New Contact</button><br/>
-
-				<!--<button type="button" class="queryBtn" id="addContactButton" onclick="addContact();"> Add </button>-->
-				<br>
+				<button class="openBtn" id="addBtn" onclick="openFormAdd();">New Contact</button>
 			</div>
 
 			<!--Update Contact/Delete Contact-->
 			<div class="queryBox" id="UDQuery">
-				<input type="text" class="RUDField" id="updateText" placeholder="Update Contact">
+				<input type="text" class="RUDField" id="updateText" placeholder="Contact Name">
+				<input type="text" class="RUDField" id="updateText" placeholder="New Info.">
 				<label for="Category"> Category: </label>
 				<select class="form-control" id="valueCat" name="Category" required>
 					<option value="NA" selected> Select one</option>
@@ -90,7 +88,7 @@
 					<option value="EM">Email</option>
 					<option value="PN">Phone Number</option>
 					<option value="UN">Username</option>
-				</select><br/>
+				</select>
 					<!--update/deleteValue not functioning yet-->
 				<div id="modButtons">
 					<button type="button" id="updateValueButton" class="buttons modButtons" onclick="updateValue();"> Update </button>
@@ -100,5 +98,6 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
