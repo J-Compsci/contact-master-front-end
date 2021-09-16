@@ -32,7 +32,7 @@ function doLogin()
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.onreadystatechange = function()
@@ -119,7 +119,6 @@ function doLogout()
 // Add - new Contacts
 function addContact()
 {
-	//var newContact = document.getElementById("contactText").value;
 	document.getElementById("contactAddResult").innerHTML = "";
 
 	var data = {};
@@ -138,7 +137,7 @@ function addContact()
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.onreadystatechange = function()
@@ -173,7 +172,7 @@ function searchContact()
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.onreadystatechange = function()
