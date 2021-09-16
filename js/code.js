@@ -19,13 +19,11 @@ function doLogin()
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
 // Need for actual login event-disabled while updating:
-   var hash = md5( password );
 
 	document.getElementById("loginResult").innerHTML = "";
 
 	var tmp = {login:login,password:password};
 // Need for actual login event-disabled while updating:
-	var tmp = {login:login,password:hash};
 	var jsonPayload = JSON.stringify( tmp );
 
 	var url = urlBase + '/Login.' + extension;
@@ -260,7 +258,7 @@ function closeFormAdd(){
 
 		//clears all input fields, except for the button
 		for (i = 0; i < inputs.length; i++) {
-		  if (inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
+		  if(inputs[i].nodeName === "INPUT" && inputs[i].type === "text" || inputs[i].nodeName === "INPUT" && inputs[i].type === "email") {
 		    // Update text input
 		    inputs[i].value = "";
 		  }
@@ -314,18 +312,20 @@ function validateAdd(event){  // Validating Added Contact Entries
 		document.getElementById("addLast").innerHTML = "Last names must be at least 2 characters";
 		return false;
 
-	// Email and Phone Number
 	} else if( addForm.Phonenumber.value.length <= 1 ){
+		console.log(addForm.Phonenumber.value.length);
 		document.getElementById("addPhone").innerHTML = "Phone numbers must be 10 digits";
 		return false;
 
 	} else if( addForm.Phonenumber.value.length >= 1 ){
 		if( isNaN(addForm.Phonenumber.value) || addForm.Phonenumber.value.length != 10 ){
+			console.log(addForm.Phonenumber.value.length);
 			document.getElementById("addPhone").innerHTML = "Phone numbers must be 10 digits";
 			return false;
 		}
-
+		console.log(addForm.Email.value.length);
 	} else if( addForm.Email.value.length <= 1 ){
+		console.log(addForm.Email.value.length);
 		document.getElementById("addEmail").innerHTML = "Please provide an email";
 		return false;
 
