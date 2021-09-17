@@ -18,12 +18,10 @@ function doLogin()
 
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
-// Need for actual login event-disabled while updating:
 
 	document.getElementById("loginResult").innerHTML = "";
 
 	var tmp = {login:login,password:password};
-// Need for actual login event-disabled while updating:
 	var jsonPayload = JSON.stringify( tmp );
 
 	var url = urlBase + '/Login.' + extension;
